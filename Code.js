@@ -44,6 +44,17 @@ const DRIVE_FOLDER_ID = '1r068e1m7NbYSE2WaGKSFrsqzM4NCmbnT';
 // ==================== 2. LINE Webhook 主入口 ====================
 
 /**
+ * 提供瀏覽器或檢測工具確認 Webhook 服務連線狀態
+ */
+function doGet() {
+  return ContentService.createTextOutput(JSON.stringify({
+    status: 'ok',
+    system: '台灣機械業 LINE 智能庫存查詢與自動 PDF 報價單系統',
+    message: 'Webhook 端點運作正常，請將此網址設定於 LINE Developers Messaging API Webhook URL。'
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
  * 處理 LINE Messaging API Webhook POST 請求
  * @param {GoogleAppsScript.Events.DoPost} e
  */
