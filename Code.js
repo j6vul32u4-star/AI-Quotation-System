@@ -9,11 +9,15 @@
 
 // ==================== 1. 系統設定區塊 (Config) ====================
 
-/** LINE Messaging API Channel Access Token */
-const LINE_CHANNEL_ACCESS_TOKEN = '請填入您的_LINE_CHANNEL_ACCESS_TOKEN';
+/** LINE Messaging API Channel Access Token（優先讀取 Secrets.js 或 ScriptProperties） */
+const LINE_CHANNEL_ACCESS_TOKEN = (typeof SECRET_LINE_CHANNEL_ACCESS_TOKEN !== 'undefined' && SECRET_LINE_CHANNEL_ACCESS_TOKEN)
+  ? SECRET_LINE_CHANNEL_ACCESS_TOKEN
+  : (PropertiesService.getScriptProperties().getProperty('LINE_CHANNEL_ACCESS_TOKEN') || '請填入您的_LINE_CHANNEL_ACCESS_TOKEN');
 
-/** Google Gemini API Key */
-const GEMINI_API_KEY = '請填入您的_GEMINI_API_KEY';
+/** Google Gemini API Key（優先讀取 Secrets.js 或 ScriptProperties） */
+const GEMINI_API_KEY = (typeof SECRET_GEMINI_API_KEY !== 'undefined' && SECRET_GEMINI_API_KEY)
+  ? SECRET_GEMINI_API_KEY
+  : (PropertiesService.getScriptProperties().getProperty('GEMINI_API_KEY') || '請填入您的_GEMINI_API_KEY');
 
 /** 使用之 Gemini 模型名稱 */
 const GEMINI_MODEL = 'gemini-2.5-flash';
@@ -23,8 +27,8 @@ const GEMINI_MODEL = 'gemini-2.5-flash';
  * 僅名列於此陣列中的業務人員可查詢庫存與開立報價單
  */
 const ALLOWED_SALES_IDS = [
-  '請填入授權業務的_LINE_USER_ID_1',
-  '請填入授權業務的_LINE_USER_ID_2'
+  'U60f4f5c5c7c193464151ea5e1195d6ab',
+  'skipjackwu'
 ];
 
 /** 庫存試算表分頁名稱（試算表：機台庫存表 / 分頁：工作表1） */
