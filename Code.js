@@ -96,6 +96,12 @@ function doPost(e) {
 
       // 執行業務詢價與庫存查詢主流程
       const replyMessages = processSalesInquiry(userMessage);
+      if (replyToken === 'ANTIGRAVITY_TEST') {
+        return ContentService.createTextOutput(JSON.stringify({
+          status: 'ok',
+          replyMessages: replyMessages
+        })).setMimeType(ContentService.MimeType.JSON);
+      }
       replyLineMessages(replyToken, replyMessages);
     }
 
